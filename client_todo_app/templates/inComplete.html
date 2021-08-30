@@ -1,0 +1,23 @@
+<div class="container" ng-controller="todoController" ng-init="getTodoList()">
+    <div class="panel-heading"> 
+        <p class="panel-title"><span style="color:#5bc0de; margin-right: 5px;" class="glyphicon glyphicon-search"> </span>Search Todo</p>
+        <input type="search" class="form-control" placeholder="Search Todo" ng-model="todoSearch">
+        <hr>
+    </div>
+    <div class="panel-body">
+        <h2>Incomplete Todo List</h2>
+        <ul class="list-group">
+            <li class="list-group-item clearfix task" ng-repeat="todo in todoList | filter :todoSearch " ng-show="!todo.isDone">
+                <input class="todoCheckbox"  id="{{todo._id + '_ '+ $index}}" ng-change="doneTask(todo, todo.isDone)" ng-model="todo.isDone" type="checkbox">
+                <label class="todoCheckboxlabel" for="{{todo._id + '_ '+ $index}}" >{{todo.taskName}}</label>
+          
+                <span class="pull-right">
+                    <button class="btn btn-default btn-xs"><span class="glyphicon glyphicon-pencil" 
+                        ng-click="open('md', todo)" ></span></button>
+                    <button class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove" 
+                        ng-click="deleteTodo(todo)"></span></button>
+                    </span>
+            </li>
+        </ul>
+    </div>
+</div>
